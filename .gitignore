@@ -59,3 +59,11 @@ logs/
 
 # Generated reports
 monitoring/anomaly_report.csv
+
+__pycache__/
+*.pyc
+
+monitoring/reports/*.csv
+
+monitoring/reports/*.csv
+!monitoring/reports/.gitkeep
