@@ -205,9 +205,16 @@ def detect_and_remediate():
 def main():
     """
     Entry point of the AIOps engine.
+    Runs continuously.
     """
 
-    detect_and_remediate()
+    while True:
+
+        detect_and_remediate()
+
+        print("\nWaiting 30 seconds before next health check...\n")
+
+        time.sleep(10)
 
 
 # =====================================================
