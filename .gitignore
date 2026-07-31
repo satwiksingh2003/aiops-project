@@ -23,3 +23,7 @@ clean_dataset.csv
 # OS
 .DS_Store
 Thumbs.db
+
+# Generated ML files
+monitoring/isolation_forest_model.pkl
+monitoring/prediction_results.csv
