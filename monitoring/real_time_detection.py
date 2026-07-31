@@ -15,6 +15,7 @@ from logger import logger
 from hybrid_detection import hybrid_predict
 
 from config import FEATURES, CHECK_INTERVAL
+from prometheus_client import Gauge, start_http_server
 
 # =====================================================
 # Rolling Window Configuration
@@ -33,6 +34,29 @@ print("=" * 60)
 
 logger.info("Hybrid AIOps Monitoring Engine Started")
 
+# =====================================================
+# Prometheus Metrics
+# =====================================================
+
+TOTAL_PODS = Gauge(
+    "aiops_total_pods",
+    "Total pods monitored"
+)
+
+NORMAL_PODS = Gauge(
+    "aiops_normal_pods",
+    "Pods classified as NORMAL"
+)
+
+SUSPICIOUS_PODS = Gauge(
+    "aiops_suspicious_pods",
+    "Pods classified as SUSPICIOUS"
+)
+
+HIGH_CONFIDENCE_ANOMALIES = Gauge(
+    "aiops_high_confidence_anomalies",
+    "Pods classified as HIGH_CONFIDENCE_ANOMALY"
+)
 # =====================================================
 # Detection Function
 # =====================================================
@@ -169,6 +193,15 @@ def detect_and_remediate():
     print(f"Suspicious Pods            : {suspicious}")
     print(f"High Confidence Anomalies  : {anomalies}")
 
+    # =====================================================
+    # Update Prometheus Metrics
+    # =====================================================
+
+    TOTAL_PODS.set(total)
+    NORMAL_PODS.set(normal)
+    SUSPICIOUS_PODS.set(suspicious)
+    HIGH_CONFIDENCE_ANOMALIES.set(anomalies)
+
     logger.info(
         f"Pods={total} | "
         f"Collecting={collecting} | "
@@ -294,6 +327,12 @@ def main():
 
     logger.info(
         "Hybrid AIOps Monitoring Service Started."
+    )
+
+    start_http_server(8000)
+
+    logger.info(
+        "Prometheus metrics available at http://localhost:8000/metrics"
     )
 
     while True:

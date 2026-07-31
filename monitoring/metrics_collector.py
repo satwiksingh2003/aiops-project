@@ -5,8 +5,12 @@ import os
 import time
 
 # Prometheus API URL
-PROMETHEUS_URL = "http://localhost:9090/api/v1/query"
+import os
 
+PROMETHEUS_URL = os.getenv(
+    "PROMETHEUS_URL",
+    "http://localhost:9090/api/v1/query"
+)
 
 # -------------------------------------------------
 # Query Prometheus

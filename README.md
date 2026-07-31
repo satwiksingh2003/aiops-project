@@ -1,90 +1,146 @@
-# 🤖 AIOps Framework for Autonomous Failure Detection and Remediation
+# 🤖 AIOps Framework for Autonomous Failure Detection and Remediation on Kubernetes
 
-An AI-powered AIOps framework that monitors Kubernetes workloads, detects anomalies using Machine Learning, predicts failures, and performs automated remediation.
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-GKE-326CE5)
+![Prometheus](https://img.shields.io/badge/Monitoring-Prometheus-orange)
+![Grafana](https://img.shields.io/badge/Dashboard-Grafana-F46800)
+![Chaos Mesh](https://img.shields.io/badge/Chaos-ChaosMesh-red)
+![Machine Learning](https://img.shields.io/badge/AI-IsolationForest%20%2B%20LSTM-success)
 
----
-
-## 📌 Project Overview
-
-Modern cloud-native applications generate thousands of metrics every second. Detecting failures manually is slow and inefficient.
-
-This project builds an intelligent AIOps platform capable of:
-
-- Monitoring Kubernetes clusters
-- Collecting real-time Prometheus metrics
-- Detecting anomalies using Machine Learning
-- Predicting failures using Deep Learning
-- Automatically remediating failures
-- Visualizing cluster health through dashboards
+An intelligent AIOps framework that continuously monitors Kubernetes workloads, detects anomalies using Machine Learning, visualizes system health in Grafana, and provides intelligent remediation recommendations.
 
 ---
 
-## 🏗️ System Architecture
+# 📌 Project Overview
 
-```text
-                   +----------------------+
-                   |   Robot Shop App     |
-                   +----------+-----------+
-                              |
-                              |
-                              ▼
-                     Kubernetes Cluster
-                              |
-                              ▼
-                        Prometheus Server
-                              |
-                              ▼
-                     Metrics Collector
-                              |
-                              ▼
-                     Dataset Generation
-                              |
-                              ▼
-                    Isolation Forest Model
-                              |
-                              ▼
-                        LSTM Predictor
-                              |
-                              ▼
-                    Remediation Engine
-                              |
-                              ▼
-             Restart / Scale / Recover Pods
-                              |
-                              ▼
-                    Monitoring Dashboard
+Modern cloud-native applications deployed on Kubernetes generate thousands of infrastructure metrics every minute. Traditional monitoring tools visualize these metrics but cannot intelligently identify abnormal behaviour before it impacts production.
+
+This project combines Machine Learning with Kubernetes monitoring and Chaos Engineering to build an intelligent AIOps platform capable of:
+
+- Real-time Kubernetes monitoring
+- Hybrid anomaly detection
+- AI-powered health scoring
+- Intelligent remediation recommendations
+- Chaos Engineering validation
+- Kubernetes self-healing visualization
+
+---
+
+# 🎯 Objectives
+
+- Monitor Kubernetes workloads in real time
+- Detect abnormal pod behaviour using Machine Learning
+- Validate the system using Chaos Mesh
+- Visualize infrastructure and AI metrics
+- Generate anomaly reports
+- Demonstrate Kubernetes self-healing
+
+---
+
+# 🏗️ System Architecture
+
+<p align="center">
+<img src="assets/architecture.png" width="100%">
+</p>
+
+The framework follows the pipeline below:
+
+```
+Chaos Mesh
+      │
+      ▼
+Robot Shop Application (GKE)
+      │
+      ▼
+Kubernetes Metrics
+      │
+      ▼
+Prometheus
+      │
+      ▼
+Metrics Collector
+      │
+      ▼
+Data Preprocessing
+      │
+      ▼
+Hybrid Detection Engine
+ ┌─────────────────────────┐
+ │ Isolation Forest        │
+ ├─────────────────────────┤
+ │ LSTM Autoencoder        │
+ └─────────────────────────┘
+      │
+      ▼
+Decision Engine
+      │
+      ▼
+Recommendation Engine
+      │
+      ▼
+Prometheus Custom Metrics
+      │
+      ▼
+Grafana Dashboard
 ```
 
 ---
 
 # 🚀 Features
 
-- Kubernetes Monitoring
-- Prometheus Metrics Collection
-- Grafana Dashboard
-- Chaos Engineering using Chaos Mesh
-- CPU Stress Injection
-- Memory Stress Injection
-- Network Delay Injection
-- Pod Failure Simulation
-- Dataset Generation
-- Data Preprocessing
-- Isolation Forest for Anomaly Detection *(Upcoming)*
-- LSTM-based Failure Prediction *(Upcoming)*
-- Automated Remediation *(Upcoming)*
+### Infrastructure Monitoring
+
+- CPU Usage
+- Memory Usage
+- Running Pods
+- Pod-wise Resource Monitoring
+
+### AI Monitoring
+
+- Hybrid Anomaly Detection
+- Healthy Pods
+- Suspicious Pods
+- Critical Anomalies
+- AI Health Score
+- Real-Time Monitoring
+
+### Machine Learning
+
+- Isolation Forest
+- LSTM Autoencoder
+- Hybrid Detection Logic
+
+### Chaos Engineering
+
+- CPU Stress
+- Memory Stress
+- Network Delay
+- Pod Kill
+
+### Recommendation Engine
+
+Provides intelligent recommendations such as:
+
+- Restart Pod
+- Scale Deployment
+- Investigate CPU Spike
+- Investigate Memory Leak
+- Investigate Network Latency
 
 ---
 
-# 🛠 Tech Stack
+# ⚙️ Technology Stack
 
 ## Cloud
 
-- Google Cloud Platform (GCP)
 - Google Kubernetes Engine (GKE)
 
 ## Containerization
 
 - Docker
+
+## Container Orchestration
+
 - Kubernetes
 
 ## Monitoring
@@ -98,11 +154,16 @@ This project builds an intelligent AIOps platform capable of:
 
 ## Machine Learning
 
+- Isolation Forest
+- LSTM Autoencoder
+
+## Backend
+
 - Python
 - Pandas
-- Scikit-learn
-- Isolation Forest
-- TensorFlow / Keras (LSTM)
+- NumPy
+- Scikit-Learn
+- TensorFlow / Keras
 
 ---
 
@@ -111,167 +172,360 @@ This project builds an intelligent AIOps platform capable of:
 ```text
 aiops-project/
 
+├── assets/
 ├── chaos/
-│   ├── cpu-stress.yaml
-│   ├── memory-stress.yaml
-│   ├── network-delay.yaml
-│   └── pod-kill.yaml
-│
 ├── dashboard/
-│
-├── docs/
-│
 ├── kubernetes/
-│
-├── models/
-│
 ├── monitoring/
-│   ├── metrics_collector.py
-│   ├── preprocess_data.py
-│
+├── models/
+├── reports/
 ├── robot-shop/
-│
 ├── README.md
 └── requirements.txt
 ```
 
 ---
 
-# 📊 Monitoring Pipeline
+# 🔄 Hybrid Detection Logic
 
-The metrics collector fetches Kubernetes metrics from Prometheus every 30 seconds.
+The framework combines two Machine Learning models.
 
-Collected Metrics:
+## Isolation Forest
 
-- CPU Usage
-- Memory Usage
+Detects statistical outliers using infrastructure metrics such as:
+
+- CPU
+- Memory
 - Network RX
 - Network TX
-- Pod Status
-
-The collected metrics are stored in a dataset for Machine Learning.
 
 ---
 
-# 🌪 Chaos Engineering
+## LSTM Autoencoder
 
-The project simulates production failures using Chaos Mesh.
+Learns the normal behaviour of workloads and computes reconstruction error.
 
-Implemented Experiments:
+Higher reconstruction error indicates abnormal behaviour.
+
+---
+
+## Decision Engine
+
+The predictions from both models are combined to classify workloads into:
+
+- ✅ Normal
+- ⚠️ Suspicious
+- 🚨 High Confidence Anomaly
+
+Combining both models reduces false positives and improves anomaly detection accuracy.
+
+---
+
+# 📈 Real-Time Monitoring Pipeline
+
+1. Collect Prometheus metrics
+2. Preprocess workload metrics
+3. Build rolling history
+4. Run Isolation Forest
+5. Run LSTM Autoencoder
+6. Combine predictions
+7. Generate recommendations
+8. Export Prometheus metrics
+9. Update Grafana Dashboard
+
+---
+
+# 🔥 Chaos Engineering
+
+The framework has been validated using Chaos Mesh.
+
+Supported experiments:
 
 - CPU Stress
 - Memory Stress
 - Network Delay
 - Pod Kill
 
-These experiments generate realistic anomalies for training and validating the anomaly detection model.
+These experiments verify that the anomaly detection system reacts to infrastructure failures under controlled conditions.
 
 ---
 
-# 🤖 Machine Learning Pipeline
+# 📊 Grafana Dashboard
 
-## Phase 1
+The dashboard provides:
 
-Isolation Forest
+- Infrastructure Monitoring
+- CPU Usage
+- Memory Usage
+- Healthy Pods
+- Suspicious Pods
+- Critical Anomalies
+- AI Health Score
+- Resource Trends
 
-Purpose:
-
-- Detect abnormal resource utilization
-- Identify anomalous pods
-- Real-time anomaly detection
-
----
-
-## Phase 2
-
-LSTM Network
-
-Purpose:
-
-- Learn workload patterns
-- Predict future failures
-- Early warning system
+<p align="center">
+<img src="assets/dashboard.png" width="100%">
+</p>
 
 ---
 
-# 🔄 Workflow
+# 🧪 Demonstration Workflow
 
-```text
-Robot Shop
+```
+Normal Cluster
       │
       ▼
-Prometheus
+Inject CPU Stress
       │
       ▼
-Metrics Collector
+Prometheus Collects Metrics
       │
       ▼
-Dataset
+Isolation Forest Detects Anomaly
       │
       ▼
-Isolation Forest
+LSTM Confirms Anomaly
       │
       ▼
-LSTM Predictor
+Recommendation Generated
       │
       ▼
-Remediation Engine
+Grafana Dashboard Updated
       │
       ▼
-Restart / Scale Pods
+Chaos Experiment Ends
+      │
+      ▼
+Cluster Returns to Normal
 ```
 
 ---
 
-# 📸 Screenshots
+# 📸 Project Screenshots
 
-Screenshots will be added for:
+## System Architecture
 
-- Robot Shop
-- Kubernetes Cluster
-- Grafana Dashboard
-- Prometheus
-- Chaos Mesh
-- Anomaly Detection Dashboard
+<img src="assets/architecture.png">
 
 ---
 
-# 📈 Current Progress
+## Grafana Dashboard
 
-- [x] Kubernetes Deployment
-- [x] Robot Shop Deployment
-- [x] Prometheus Setup
-- [x] Grafana Setup
-- [x] Metrics Collection
-- [x] Chaos Engineering
-- [x] Dataset Collection
-- [x] Dataset Preprocessing
-- [ ] Isolation Forest
-- [ ] LSTM Prediction
-- [ ] Automated Remediation
-- [ ] Dashboard Integration
+<img src="assets/dashboard.png">
 
 ---
 
-# 👨‍💻 Author
+## CPU Stress Experiment
 
-**Satwik Singh**
-
-Information Science & Engineering
-
-RNS Institute of Technology
+<img src="assets/cpu-stress.png">
 
 ---
 
-# ⭐ Future Improvements
+## AI Monitoring
 
-- Explainable AI (XAI)
+<img src="assets/ai-monitoring.png">
+
+---
+
+## Recovery
+
+<img src="assets/recovery.png">
+
+---
+
+# 📝 Sample Output
+
+```
+Healthy Pods                : 8
+
+Suspicious Pods             : 2
+
+Critical Anomalies          : 1
+
+AI Health Score             : 66.7%
+
+Recommendations
+
+ratings   → Monitor workload
+
+shipping  → Investigate network latency
+
+mysql     → Check memory utilization
+```
+
+---
+
+# 🛡️ Kubernetes Self-Healing
+
+When failures such as pod termination occur, Kubernetes Deployment controllers automatically recreate the failed pod to maintain the desired state.
+
+The AI layer continuously monitors these events, detects anomalies, and generates intelligent remediation recommendations.
+
+---
+
+# 🔮 Future Enhancements
+
+- Reinforcement Learning based remediation agent
+- Automatic Kubernetes scaling
 - Root Cause Analysis
-- Reinforcement Learning-based Self-Healing
-- Multi-cluster Monitoring
-- Slack/Email Alerts
-- Kubernetes Operator for Automated Recovery
+- Slack & Microsoft Teams notifications
+- Alertmanager integration
+- Multi-cluster monitoring
+- Predictive failure forecasting
 
 ---
 
-## ⭐ If you like this project, don't forget to star the repository!
+# 👨‍💻 Team
+
+**Code Crafters**
+
+- Atul Kumar
+- Avani Thumballi
+- Abhishek Kumar
+- Satwik Singh
+
+---
+
+# 📄 License
+
+This project has been developed for academic and research purposes.
+# System Architecture
+
+<p align="center">
+  <img src="assets/architecture.png" alt="AIOps Architecture" width="100%">
+</p>
+
+                          +----------------------+
+                          |     Chaos Mesh       |
+                          | Failure Injection    |
+                          +----------+-----------+
+                                     |
+                                     v
+                     +-------------------------------+
+                     | Robot Shop on Kubernetes (GKE)|
+                     +---------------+---------------+
+                                     |
+                                     v
+                         +-----------------------+
+                         |     Prometheus        |
+                         +-----------+-----------+
+                                     |
+                                     v
+                        +-------------------------+
+                        |  Metrics Collector      |
+                        +-----------+-------------+
+                                    |
+                                    v
+                      +-----------------------------+
+                      | Data Preprocessing Pipeline |
+                      +-----------+-----------------+
+                                  |
+              +-------------------+-------------------+
+              |                                       |
+              v                                       v
+     +-------------------+                 +----------------------+
+     | Isolation Forest  |                 | LSTM Autoencoder     |
+     +---------+---------+                 +----------+-----------+
+               \                                 /
+                \                               /
+                 +-------------+---------------+
+                               |
+                               v
+                  +---------------------------+
+                  | Hybrid Decision Engine    |
+                  +------------+--------------+
+                               |
+                               v
+                  +---------------------------+
+                  | Recommendation Engine     |
+                  +------------+--------------+
+                               |
+                               +----------------+
+                               |                |
+                               v                v
+                  +------------------+   +------------------+
+                  | Prometheus Export|   | Anomaly Reports  |
+                  +--------+---------+   +------------------+
+                           |
+                           v
+                  +---------------------------+
+                  |    Grafana Dashboard      |
+                  +---------------------------+
+
+# Architecture Diagram
+                                      ┌───────────────────────────┐
+                                      │        Chaos Mesh         │
+                                      │   Failure Injection       │
+                                      │ CPU • Memory • Network    │
+                                      │      Pod Kill             │
+                                      └─────────────┬─────────────┘
+                                                    │
+                                                    ▼
+ ┌────────────────────────────────────────────────────────────────────────────┐
+ │                 Robot Shop Microservices on GKE (Kubernetes)               │
+ │                                                                            │
+ │  Web │ Cart │ User │ Shipping │ Payment │ Ratings │ Catalogue │ MySQL │ Redis │
+ └────────────────────────────────────────────────────────────────────────────┘
+                                                    │
+                                                    ▼
+                                   ┌─────────────────────────┐
+                                   │     Metrics Server      │
+                                   └─────────────┬───────────┘
+                                                 │
+                                                 ▼
+                                   ┌─────────────────────────┐
+                                   │      Prometheus         │
+                                   │   Metrics Collection    │
+                                   └─────────────┬───────────┘
+                                                 │
+                                                 ▼
+                              ┌────────────────────────────────┐
+                              │ Python Monitoring Service      │
+                              │ Metrics Collector              │
+                              │ Data Preprocessing             │
+                              └─────────────┬──────────────────┘
+                                            │
+                  ┌─────────────────────────┴─────────────────────────┐
+                  │                                                   │
+                  ▼                                                   ▼
+      ┌──────────────────────────┐                    ┌─────────────────────────┐
+      │    Isolation Forest      │                    │   LSTM Autoencoder      │
+      │ Statistical Outlier      │                    │ Learns Normal Patterns  │
+      │ Detection                │                    │ Reconstruction Error    │
+      └─────────────┬────────────┘                    └────────────┬────────────┘
+                    │                                              │
+                    └──────────────────────┬───────────────────────┘
+                                           ▼
+                             ┌──────────────────────────────┐
+                             │ Hybrid Decision Engine       │
+                             │ Normal                      │
+                             │ Suspicious                  │
+                             │ High Confidence Anomaly     │
+                             └──────────────┬──────────────┘
+                                            │
+                     ┌──────────────────────┴─────────────────────┐
+                     │                                            │
+                     ▼                                            ▼
+        ┌───────────────────────────┐              ┌──────────────────────────┐
+        │ Recommendation Engine     │              │  Anomaly Reports         │
+        │ Restart Pod               │              │ Timestamp                │
+        │ Scale Deployment          │              │ Pod Name                 │
+        │ Investigate CPU           │              │ AI Prediction            │
+        └─────────────┬─────────────┘              └──────────────────────────┘
+                      │
+                      ▼
+          ┌────────────────────────────────┐
+          │ Prometheus Custom AI Metrics   │
+          │ Healthy Pods                   │
+          │ Suspicious Pods                │
+          │ Critical Anomalies             │
+          │ AI Health Score                │
+          └─────────────┬──────────────────┘
+                        │
+                        ▼
+             ┌─────────────────────────────┐
+             │      Grafana Dashboard      │
+             │ Infrastructure Monitoring   │
+             │ AI Monitoring               │
+             │ Real-Time Visualization     │
+             └─────────────────────────────┘
