@@ -1,0 +1,2 @@
+Timestamp,Pod,CPU,Memory_MB,Network_RX_KBps,Network_TX_KBps,Pod_Status,Prediction,Status,Recommended_Action,Reason
+2026-07-31 23:17:56,ratings-6fc64d84f8-bvmb4,0.001203,34.14,0.309,0.348,1,-1,ANOMALY,Investigate Network Traffic,Unexpected network activity detected.

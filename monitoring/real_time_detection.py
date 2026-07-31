@@ -8,6 +8,7 @@ import time
 
 from metrics_collector import collect_metrics
 from remediation import recommend_action, restart_pod
+from logger import logger
 
 # =====================================================
 # Configuration
@@ -35,11 +36,13 @@ try:
     model = joblib.load(MODEL_PATH)
 
     print("Model loaded successfully.\n")
+    logger.info("Isolation Forest model loaded successfully.")
 
 except Exception as e:
 
     print("Unable to load model.")
     print(e)
+    logger.error(f"Unable to load model: {e}")
     exit()
 
 
@@ -59,6 +62,7 @@ def detect_and_remediate():
     # =====================================================
 
     print("Collecting live metrics...\n")
+    logger.info("Collecting live metrics from Kubernetes cluster.")
 
     try:
 
@@ -68,6 +72,9 @@ def detect_and_remediate():
 
         print("Metric collection failed.")
         print(e)
+
+        logger.error(f"Metric collection failed: {e}")
+
         return
 
     # =====================================================
@@ -124,6 +131,10 @@ def detect_and_remediate():
     print(f"Normal Pods     : {normal}")
     print(f"Anomalous Pods  : {anomaly}")
 
+    logger.info(
+        f"Pods Scanned={total} | Normal={normal} | Anomalies={anomaly}"
+    )
+
     # =====================================================
     # Recommendation Engine
     # =====================================================
@@ -133,6 +144,8 @@ def detect_and_remediate():
         anomalies = live_metrics[
             live_metrics["Prediction"] == -1
         ].copy()
+
+        logger.warning(f"{len(anomalies)} anomalous pod(s) detected.")
 
         actions = anomalies.apply(
             recommend_action,
@@ -167,6 +180,8 @@ def detect_and_remediate():
             index=False
         )
 
+        logger.info("Anomaly report saved.")
+
         print("\nAnomaly report saved to monitoring/anomaly_report.csv")
 
         # =====================================================
@@ -183,11 +198,21 @@ def detect_and_remediate():
             pod = row["Pod"]
             action = row["Recommended_Action"]
 
+            logger.info(
+                f"Pod={pod} | Recommended Action={action}"
+            )
+
             if action == "Restart Pod":
+
+                logger.warning(f"Restarting pod {pod}")
 
                 restart_pod(pod)
 
             else:
+
+                logger.warning(
+                    f"No automatic remediation configured for {pod}"
+                )
 
                 print(f"\nNo automatic remediation configured for {pod}")
                 print(f"Recommended Action : {action}")
@@ -196,6 +221,7 @@ def detect_and_remediate():
     else:
 
         print("\nNo anomalies detected.")
+        logger.info("No anomalies detected.")
 
 
 # =====================================================
@@ -208,11 +234,15 @@ def main():
     Runs continuously.
     """
 
+    logger.info("AIOps Monitoring Service Started.")
+
     while True:
 
         detect_and_remediate()
 
-        print("\nWaiting 30 seconds before next health check...\n")
+        logger.info("Sleeping for 10 seconds before next health check.")
+
+        print("\nWaiting 10 seconds before next health check...\n")
 
         time.sleep(10)
 
