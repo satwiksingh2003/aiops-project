@@ -14,14 +14,7 @@ from logger import logger
 # Configuration
 # =====================================================
 
-MODEL_PATH = "monitoring/isolation_forest_model.pkl"
-
-FEATURES = [
-    "CPU",
-    "Memory_MB",
-    "Network_RX_KBps",
-    "Network_TX_KBps"
-]
+from config import MODEL_PATH, FEATURES, CHECK_INTERVAL
 
 # =====================================================
 # Load Model
@@ -228,6 +221,10 @@ def detect_and_remediate():
 # Main Function
 # =====================================================
 
+# =====================================================
+# Main Function
+# =====================================================
+
 def main():
     """
     Entry point of the AIOps engine.
@@ -240,12 +237,15 @@ def main():
 
         detect_and_remediate()
 
-        logger.info("Sleeping for 10 seconds before next health check.")
+        logger.info(
+            f"Sleeping for {CHECK_INTERVAL} seconds before next health check."
+        )
 
-        print("\nWaiting 10 seconds before next health check...\n")
+        print(
+            f"\nWaiting {CHECK_INTERVAL} seconds before next health check...\n"
+        )
 
-        time.sleep(10)
-
+        time.sleep(CHECK_INTERVAL)
 
 # =====================================================
 # Program Entry Point

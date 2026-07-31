@@ -4,14 +4,13 @@
 
 import subprocess
 
-# =====================================================
-# Configuration
-# =====================================================
-
-# False = Simulation Mode
-# True  = Execute kubectl command
-EXECUTE_REMEDIATION = False
-
+from config import (
+    CPU_THRESHOLD,
+    MEMORY_THRESHOLD,
+    NETWORK_THRESHOLD,
+    EXECUTE_REMEDIATION,
+    NAMESPACE
+)
 
 # =====================================================
 # Recommendation Engine
@@ -29,21 +28,21 @@ def recommend_action(row):
     tx = row["Network_TX_KBps"]
 
     # High CPU
-    if cpu > 0.10:
+    if cpu > CPU_THRESHOLD:
         return (
             "Restart Pod",
             "High CPU usage detected."
         )
 
     # High Memory
-    elif memory > 400:
+    elif memory > MEMORY_THRESHOLD:
         return (
             "Investigate Memory Leak",
             "Memory usage is unusually high."
         )
 
     # High Network Activity
-    elif rx > 0.25 or tx > 0.25:
+    elif rx > NETWORK_THRESHOLD or tx > NETWORK_THRESHOLD:
         return (
             "Investigate Network Traffic",
             "Unexpected network activity detected."
@@ -78,7 +77,7 @@ def restart_pod(pod_name):
         "pod",
         pod_name,
         "-n",
-        "robot-shop"
+        NAMESPACE
     ]
 
     print("\nCommand:")
