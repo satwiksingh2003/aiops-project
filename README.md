@@ -389,11 +389,7 @@ The AI layer continuously monitors these events, detects anomalies, and generate
 # 📄 License
 
 This project has been developed for academic and research purposes.
-# System Architecture
-
-<p align="center">
-  <img src="assets/architecture.png" alt="AIOps Architecture" width="100%">
-</p>
+# System Architecture plotted
 
                           +----------------------+
                           |     Chaos Mesh       |
@@ -452,80 +448,3 @@ This project has been developed for academic and research purposes.
                   |    Grafana Dashboard      |
                   +---------------------------+
 
-# Architecture Diagram
-                                      ┌───────────────────────────┐
-                                      │        Chaos Mesh         │
-                                      │   Failure Injection       │
-                                      │ CPU • Memory • Network    │
-                                      │      Pod Kill             │
-                                      └─────────────┬─────────────┘
-                                                    │
-                                                    ▼
- ┌────────────────────────────────────────────────────────────────────────────┐
- │                 Robot Shop Microservices on GKE (Kubernetes)               │
- │                                                                            │
- │  Web │ Cart │ User │ Shipping │ Payment │ Ratings │ Catalogue │ MySQL │ Redis │
- └────────────────────────────────────────────────────────────────────────────┘
-                                                    │
-                                                    ▼
-                                   ┌─────────────────────────┐
-                                   │     Metrics Server      │
-                                   └─────────────┬───────────┘
-                                                 │
-                                                 ▼
-                                   ┌─────────────────────────┐
-                                   │      Prometheus         │
-                                   │   Metrics Collection    │
-                                   └─────────────┬───────────┘
-                                                 │
-                                                 ▼
-                              ┌────────────────────────────────┐
-                              │ Python Monitoring Service      │
-                              │ Metrics Collector              │
-                              │ Data Preprocessing             │
-                              └─────────────┬──────────────────┘
-                                            │
-                  ┌─────────────────────────┴─────────────────────────┐
-                  │                                                   │
-                  ▼                                                   ▼
-      ┌──────────────────────────┐                    ┌─────────────────────────┐
-      │    Isolation Forest      │                    │   LSTM Autoencoder      │
-      │ Statistical Outlier      │                    │ Learns Normal Patterns  │
-      │ Detection                │                    │ Reconstruction Error    │
-      └─────────────┬────────────┘                    └────────────┬────────────┘
-                    │                                              │
-                    └──────────────────────┬───────────────────────┘
-                                           ▼
-                             ┌──────────────────────────────┐
-                             │ Hybrid Decision Engine       │
-                             │ Normal                      │
-                             │ Suspicious                  │
-                             │ High Confidence Anomaly     │
-                             └──────────────┬──────────────┘
-                                            │
-                     ┌──────────────────────┴─────────────────────┐
-                     │                                            │
-                     ▼                                            ▼
-        ┌───────────────────────────┐              ┌──────────────────────────┐
-        │ Recommendation Engine     │              │  Anomaly Reports         │
-        │ Restart Pod               │              │ Timestamp                │
-        │ Scale Deployment          │              │ Pod Name                 │
-        │ Investigate CPU           │              │ AI Prediction            │
-        └─────────────┬─────────────┘              └──────────────────────────┘
-                      │
-                      ▼
-          ┌────────────────────────────────┐
-          │ Prometheus Custom AI Metrics   │
-          │ Healthy Pods                   │
-          │ Suspicious Pods                │
-          │ Critical Anomalies             │
-          │ AI Health Score                │
-          └─────────────┬──────────────────┘
-                        │
-                        ▼
-             ┌─────────────────────────────┐
-             │      Grafana Dashboard      │
-             │ Infrastructure Monitoring   │
-             │ AI Monitoring               │
-             │ Real-Time Visualization     │
-             └─────────────────────────────┘
