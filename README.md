@@ -448,3 +448,40 @@ This project has been developed for academic and research purposes.
                   |    Grafana Dashboard      |
                   +---------------------------+
 
+## Automation Scripts
+
+The project includes automation scripts to simplify setup and chaos testing.
+
+### Start the Project
+
+Run:
+
+scripts/start-project.bat
+
+This will:
+
+- Connect to the GKE cluster
+- Start Grafana port-forward
+- Start Prometheus port-forward
+- Open Grafana
+- Open Prometheus
+- Open Robot Shop
+
+### AIOps Control Center
+
+Run:
+
+scripts/aiops-control-center.bat
+
+Features:
+
+- Start the project
+- Check cluster health
+- Open Robot Shop
+- Open Grafana
+- Open Prometheus
+- CPU Stress
+- Memory Stress
+- Network Delay
+- Pod Kill
+- Cleanup Chaos
