@@ -39,17 +39,17 @@ echo ============================================================
 
 set /p choice=Enter your choice :
 
-if "%choice%"=="1" call start-project.bat
-if "%choice%"=="2" call check-cluster.bat
+if "%choice%"=="1" call "%~dp0start-project.bat"
+if "%choice%"=="2" call "%~dp0check-cluster.bat"
 if "%choice%"=="3" start http://34.100.171.210:8080
 if "%choice%"=="4" start http://localhost:3000
 if "%choice%"=="5" start http://localhost:9090
-if "%choice%"=="6" call cpu-stress.bat
-if "%choice%"=="7" call memory-stress.bat
-if "%choice%"=="8" call network-delay.bat
-if "%choice%"=="9" call pod-kill.bat
-if "%choice%"=="10" call cleanup-chaos.bat
-if "%choice%"=="11" call stop-portforward.bat
+if "%choice%"=="6" call "%~dp0cpu-stress.bat"
+if "%choice%"=="7" call "%~dp0memory-stress.bat"
+if "%choice%"=="8" call "%~dp0network-delay.bat"
+if "%choice%"=="9" call "%~dp0pod-kill.bat"
+if "%choice%"=="10" call "%~dp0cleanup-chaos.bat"
+if "%choice%"=="11" call "%~dp0stop-portforward.bat"
 if "%choice%"=="12" exit
 
 goto MENU
