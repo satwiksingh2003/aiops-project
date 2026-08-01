@@ -67,3 +67,4 @@ monitoring/reports/*.csv
 
 monitoring/reports/*.csv
 !monitoring/reports/.gitkeep
+scripts/config.bat
