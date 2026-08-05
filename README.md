@@ -377,8 +377,6 @@ The AI layer continuously monitors these events, detects anomalies, and generate
 
 # 👨‍💻 Team
 
-**Code Crafters**
-
 - Atul Kumar
 - Avani Thumballi
 - Abhishek Kumar
