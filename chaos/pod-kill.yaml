@@ -1,0 +1,18 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+
+metadata:
+  name: kill-web-pod
+  namespace: chaos-mesh
+
+spec:
+  action: pod-kill
+  mode: one
+
+  selector:
+    namespaces:
+      - robot-shop
+    labelSelectors:
+      service: web
+
+  duration: "30s"

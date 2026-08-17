@@ -1,0 +1,70 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.env/
+
+# Machine Learning
+*.pkl
+*.joblib
+
+# Datasets
+dataset.csv
+clean_dataset.csv
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated ML files
+monitoring/isolation_forest_model.pkl
+monitoring/prediction_results.csv
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Logs
+logs/
+*.log
+
+# Generated reports
+monitoring/anomaly_report.csv
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Virtual environment
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Logs
+logs/
+*.log
+
+# Generated reports
+monitoring/anomaly_report.csv
+
+__pycache__/
+*.pyc
+
+monitoring/reports/*.csv
+
+monitoring/reports/*.csv
+!monitoring/reports/.gitkeep
+scripts/config.bat
